@@ -1,0 +1,34 @@
+.calculator {
+  margin: auto;
+  padding: 100px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+.display {
+  padding: 0 20px 0 0;
+  font-size: 32px;
+  font-weight: 700;
+  background-color: #d9d9d9;
+  height: 75px;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.buttons > button {
+  font-size: 18px;
+  font-weight: 500;
+  width: 75px;
+  height: 75px;
+}
+
+.buttons > #zero {
+  width: 150px;
+}

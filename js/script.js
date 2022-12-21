@@ -43,6 +43,10 @@ const divide = function(a, b) {
   return (+a / +b);
 };
 
+const modulo = function(a, b) {
+  return +a % +b;
+}
+
 function operate(a, b, operand) {
   if (operand == "+") {
     return add(a, b);
@@ -52,6 +56,8 @@ function operate(a, b, operand) {
     return multiply(a, b);
   } else if (operand == "/") {
     return divide(a, b);
+  } else if (operand == "%") {
+    return modulo(a, b);
   }
 }
 

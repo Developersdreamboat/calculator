@@ -10,6 +10,8 @@ const display = document.querySelector('.display');
 const numbers = Array.from(document.querySelectorAll('.buttons > button.operand'));
 const operations = Array.from(document.querySelectorAll('.buttons > button.operator'));
 const equalsButton = document.querySelector('#equal');
+const dotButton = document.querySelector('#dot');
+const clearButton = document.querySelector('#clear');
 
 numbers.forEach(btn => 
   btn.addEventListener("click", () => setNumber(btn.textContent))
@@ -20,6 +22,8 @@ operations.forEach(btn =>
 )
 
 equalsButton.addEventListener("click", evaluate);
+dotButton.addEventListener("click", setPoint);
+clearButton.addEventListener("click", resetAll);
 
 const add = function(a, b) {
   return +a + +b;
@@ -78,5 +82,26 @@ function evaluate() {
   display.textContent = operate(prevOperand, curOperand, operation);
   operation = null;
 };
+
+function setPoint() {
+  if (shouldResetScreen) {
+    resetScreen();
+  }
+  if (display.textContent === '') {
+    display.textContent = '0';
+  }
+  if (display.textContent.includes('.')) {
+    return;
+  } 
+  display.textContent += '.';
+}
+
+function resetAll() {
+  curOperand = '';
+  prevOperand = '';
+  operation = null;
+  shouldResetScreen = false;
+  display.textContent = '0';
+}
 
 

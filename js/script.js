@@ -12,6 +12,7 @@ const operations = Array.from(document.querySelectorAll('.buttons > button.opera
 const equalsButton = document.querySelector('#equal');
 const dotButton = document.querySelector('#dot');
 const clearButton = document.querySelector('#clear');
+const signButton = document.querySelector('#sign');
 
 numbers.forEach(btn => 
   btn.addEventListener("click", () => setNumber(btn.textContent))
@@ -24,6 +25,7 @@ operations.forEach(btn =>
 equalsButton.addEventListener("click", evaluate);
 dotButton.addEventListener("click", setPoint);
 clearButton.addEventListener("click", resetAll);
+signButton.addEventListener("click", changeSign);
 
 const add = function(a, b) {
   return +a + +b;
@@ -38,7 +40,7 @@ const multiply = function(a, b) {
 };
 
 const divide = function(a, b) {
-  return (+a / +b).toFixed(2);
+  return (+a / +b);
 };
 
 function operate(a, b, operand) {
@@ -51,6 +53,10 @@ function operate(a, b, operand) {
   } else if (operand == "/") {
     return divide(a, b);
   }
+}
+
+function roundNumber(number) {
+  return Math.round(number * 100) / 100;
 }
 
 function resetScreen() {
@@ -79,7 +85,7 @@ function evaluate() {
     return;
   } 
   curOperand = display.textContent;
-  display.textContent = operate(prevOperand, curOperand, operation);
+  display.textContent = roundNumber(operate(prevOperand, curOperand, operation));
   operation = null;
 };
 
@@ -104,4 +110,6 @@ function resetAll() {
   display.textContent = '0';
 }
 
-
+function changeSign() {
+  display.textContent = -(+display.textContent);
+}
